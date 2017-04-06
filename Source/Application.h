@@ -1,5 +1,4 @@
-#ifndef APPLICATION_H_INCLUDED
-#define APPLICATION_H_INCLUDED
+#pragma once
 
 #include <vector>
 
@@ -10,5 +9,3 @@ class Application
 
     private:
 };
-
-#endif // APPLICATION_H_INCLUDED
