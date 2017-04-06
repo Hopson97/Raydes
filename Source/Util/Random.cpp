@@ -17,4 +17,11 @@ namespace Random
         std::uniform_int_distribution<int32_t> dist(lowBound, highBound);
         return dist (rd);
     }
+
+    float floatInRange(float lowBound, float highBound)
+    {
+        std::uniform_real_distribution<float> dist(lowBound, highBound);
+        return dist (rd);
+    }
+
 }
