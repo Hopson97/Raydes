@@ -4,6 +4,8 @@
 
 #include "StateBase.h"
 
+#include "../Level/Floor.h"
+
 namespace State
 {
     class SPlaying : public SBase
@@ -17,5 +19,6 @@ namespace State
             void render ()                  override;
 
         private:
+            Level::Floor m_floor;
     };
 }
