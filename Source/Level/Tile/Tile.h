@@ -1,5 +1,4 @@
-#ifndef TILE_H_INCLUDED
-#define TILE_H_INCLUDED
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <cstdint>
@@ -10,7 +9,9 @@ namespace Tile
 {
     enum class ID
     {
+        GreyStone = 0,
 
+        COUNT
     };
 
     struct Data
@@ -23,6 +24,7 @@ namespace Tile
     struct Type
     {
         public:
+            Type() = default;
             Type(std::string&& name);
 
             const Data& getData() const;
@@ -32,5 +34,3 @@ namespace Tile
     };
 }
 }
-
-#endif // TILE_H_INCLUDED
