@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <string>
 
 #ifdef __WIN32
 #include "windows.h"
@@ -51,8 +52,10 @@ catch(std::runtime_error& e)
     errorMessage(msg);
     std::cin.ignore();
 }
-catch(...)
+catch(std::exception& e)
 {
-    errorMessage("Unknown error.");
+    std::string s = e.what();
+    auto emsg = "Error. \n " + s;
+    errorMessage(emsg);
     std::cin.ignore();
 }

@@ -20,7 +20,8 @@ namespace State
     {
     }
 
-    void SPlaying::render()
+    void SPlaying::render(sf::RenderWindow& w)
     {
+        m_map.draw(w);
     }
 }

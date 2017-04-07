@@ -17,7 +17,7 @@ void Application::runMainLoop()
 
         m_states.back()->input();
         m_states.back()->update();
-        m_states.back()->render();
+        m_states.back()->render(m_window);
 
         m_window.display();
         checkStateChange();

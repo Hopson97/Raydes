@@ -9,20 +9,21 @@ namespace Level
 {
 namespace Tile
 {
-    std::vector<uint8_t> tiles =
+    std::vector<uint8_t> tilesd()
     {
-        1, 0, 1, 3, 1,
-        3, 0, 3, 1, 3,
-        1, 0, 0, 0, 1,
-        3, 1, 0, 1, 3,
-        1, 3, 1, 3, 1,
-    };
+        std::vector<uint8_t> res;
+        for (int i = 0; i < 20 * 20; i++)
+        {
+            res.push_back(0);
+        }
+        return res;
+    }
 
 
     Map::Map()
-    :   m_tileData  (tiles)
-    ,   m_width     (5)
-    ,   m_height    (5)
+    :   m_tileData  (tilesd())
+    ,   m_width     (20)
+    ,   m_height    (20)
     {
         m_tileTextures = &ResourceHolder::get().textures.get("atlas");
         generateVertexArray();
@@ -99,17 +100,19 @@ namespace Tile
         auto texVaritations = Tile::Database::get().getTileData(tileType).variations;
         //Choose a random variation
 
-        auto varitation = Random::intInRange(0, texVaritations - 1);
+        int32_t varitation = 0;
+        if (varitation > texVaritations)
+            varitation = Random::intInRange(0, texVaritations - 1);
 
         //Get the x and y positions inside of the texture atlas of that variation of the texture
-        auto tx = texCoords.x + varitation * TILE_SIZE;
-        auto ty = texCoords.y * TILE_SIZE;
+        auto tx = texCoords.x + varitation * TILE_TEXTURE_SIZE;
+        auto ty = texCoords.y * TILE_TEXTURE_SIZE;
 
         //Set texture coords of the 4 vertex points, anti-clockwise order
-        quad.topLeft     .texCoords = {tx,              ty};
-        quad.topRight    .texCoords = {tx + TILE_SIZE,  ty};
-        quad.bottomRight .texCoords = {tx + TILE_SIZE,  ty + TILE_SIZE};
-        quad.bottomLeft  .texCoords = {tx,              ty + TILE_SIZE};
+        quad.topLeft     .texCoords = {tx,                      ty};
+        quad.topRight    .texCoords = {tx + TILE_TEXTURE_SIZE,  ty};
+        quad.bottomRight .texCoords = {tx + TILE_TEXTURE_SIZE,  ty + TILE_TEXTURE_SIZE};
+        quad.bottomLeft  .texCoords = {tx,                      ty + TILE_TEXTURE_SIZE};
     }
 
 
