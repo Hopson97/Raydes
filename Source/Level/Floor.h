@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "Room.h"
+
 namespace Level
 {
     enum class DungeonSize
@@ -9,11 +11,6 @@ namespace Level
         Small = 4,
         Medium = 6,
         Large = 8
-    };
-
-    class Room
-    {
-
     };
 
     class Floor

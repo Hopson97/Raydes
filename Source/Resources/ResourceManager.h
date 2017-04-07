@@ -1,7 +1,6 @@
 #pragma once
 
 #include <unordered_map>
-#include "../util/Exceptions.h"
 
 template <typename Resource>
 class ResourceManager
