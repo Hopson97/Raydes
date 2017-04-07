@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/System/NonCopyable.hpp>
+
 class Application;
 
 namespace sf
@@ -11,7 +13,7 @@ namespace sf
 
 namespace State
 {
-    class SBase
+    class SBase : public sf::NonCopyable
     {
         public:
             SBase(Application* app)
@@ -19,9 +21,6 @@ namespace State
             { }
 
             virtual ~SBase() = default;
-
-            SBase(SBase& other) = delete;
-            SBase& operator= (SBase& other) = delete;
 
             virtual void event  (sf::Event& event)  = 0;
             virtual void input  ()                  = 0;

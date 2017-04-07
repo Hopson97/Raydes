@@ -1,9 +1,7 @@
 #include "StatePlaying.h"
 
-
 namespace State
 {
-
     SPlaying::SPlaying(Application* app)
     :   SBase(app)
     {

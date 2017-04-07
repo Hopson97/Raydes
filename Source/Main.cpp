@@ -8,6 +8,7 @@
 #endif // __WIN32
 
 #include "Util/Random.h"
+#include "Application.h"
 
 namespace
 {
@@ -32,7 +33,10 @@ namespace
 
 int main() try
 {
+    Random::init();
 
+    Application m_app;
+    m_app.runMainLoop();
     return EXIT_SUCCESS;
 }
 catch(std::out_of_range& e)
