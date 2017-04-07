@@ -4,11 +4,21 @@
 
 #include "Player.h"
 
+class Camera;
+
 namespace Entity
 {
-    struct Player
+    struct Mob
+    {
+        sf::Vector2f position;
+        virtual void update(){}
+    };
+
+    struct Player : public Mob
     {
         Player();
+        void update();
+        void draw(Camera& camera);
 
         sf::RectangleShape sprite;
     };
