@@ -20,6 +20,7 @@ void Application::runMainLoop()
         m_states.back()->render();
 
         m_window.display();
+        checkStateChange();
     }
 }
 
@@ -41,4 +42,35 @@ void Application::handleEvents()
         }
     }
 }
+
+void Application::pushState(std::unique_ptr<State::SBase> state)
+{
+    m_nextState = std::move(state);
+}
+
+void Application::popState()
+{
+    m_stateSwitch = StateSwitch::Pop;
+}
+
+
+void Application::checkStateChange()
+{
+    switch(m_stateSwitch)
+    {
+        case StateSwitch::None:
+            break;
+
+        case StateSwitch::Pop:
+            m_states.pop_back();
+            break;
+
+        case StateSwitch::Push:
+            m_states.push_back(std::move(m_nextState));
+            break;
+
+    }
+    m_stateSwitch = StateSwitch::None;
+}
+
 
