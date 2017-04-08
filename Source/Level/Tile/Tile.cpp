@@ -38,7 +38,7 @@ namespace Tile
             {
                 inFile >> m_data.dimensions.x >> m_data.dimensions.y;
             }
-            else if (line == "type")
+            else if (line == "Type")
             {
                 int32_t i;
                 inFile >> i;

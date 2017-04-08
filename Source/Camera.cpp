@@ -21,6 +21,12 @@ void Camera::update()
     {
         m_view.setCenter(m_pMob->position);
     }
+
+	m_bounds.left	= m_view.getCenter().x - m_pWindow->getSize().x / 2;
+	m_bounds.top	= m_view.getCenter().y - m_pWindow->getSize().y / 2;
+	m_bounds.width	= m_pWindow->getSize().x / 2;
+	m_bounds.height = m_pWindow->getSize().y / 2;
+
     m_pWindow->setView(m_view);
 }
 
@@ -32,4 +38,9 @@ void Camera::draw(sf::Drawable& drawable)
 sf::RenderWindow& Camera::getWindow()
 {
     return *m_pWindow;
+}
+
+bool Camera::inBounds(sf::FloatRect& rect)
+{
+	return rect.intersects(m_bounds);
 }

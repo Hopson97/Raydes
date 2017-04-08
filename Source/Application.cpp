@@ -13,12 +13,16 @@ Application::Application()
 void Application::runMainLoop()
 {
     sf::Clock dtTimer;
+	sf::Color c(20,
+		        25,
+		        20);
+
     while (m_window.isOpen())
     {
         auto dt = dtTimer.restart().asSeconds();
 
         handleEvents();
-        m_window.clear();
+		m_window.clear(c);
 
         m_states.back()->input();
         m_camera.update();

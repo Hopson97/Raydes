@@ -1,7 +1,5 @@
 #include "Room.h"
 
-#include <iostream>
-
 #include "LevelConstants.h"
 #include "Tile/TileMap.h"
 
@@ -30,26 +28,59 @@ namespace Level
             return tiles;
         }
 
+		std::vector<Tile::MapNode> extractWalls(const std::vector<Tile::MapNode>& original)
+		{
+			std::vector<Tile::MapNode> tiles;
+			for (auto& tile : original)
+			{
+				if (tile.getData().type == Tile::Data::Type::Wall)
+					tiles.push_back(tile);
+				else
+					tiles.push_back(-1);
+			}
+			return tiles;
+		}
+
+		std::vector<Tile::MapNode> extractFloors(const std::vector<Tile::MapNode>& original)
+		{
+			std::vector<Tile::MapNode> tiles;
+			for (auto& tile : original)
+			{
+				if (tile.getData().type == Tile::Data::Type::Floor)
+					tiles.push_back(tile);
+				else
+					tiles.push_back(-1);
+			}
+			return tiles;
+		}
+
         sf::Vector2f getPosition(const sf::Vector2f& position)
         {
             return {position.x * ROOM_SIZE * TILE_SIZE + TILE_SIZE * position.x * 3,
                     position.y * ROOM_SIZE * TILE_SIZE + TILE_SIZE * position.y * 3};
-
         }
 
     }
 
     Room::Room(const sf::Vector2f& position)
-    :   m_floorTiles (makeRoom(), ROOM_SIZE, ROOM_SIZE, getPosition(position))
-    {
+    {	
         auto tiles = makeRoom();
 
+		m_floorTiles.init(extractFloors(tiles), ROOM_SIZE, ROOM_SIZE, getPosition(position));
+		m_wallTiles	.init(extractWalls (tiles), ROOM_SIZE, ROOM_SIZE, getPosition(position));
     }
 
-    void Room::draw(Camera& camera)
+	void Room::drawWalls(Camera & camera)
+	{
+		m_wallTiles.draw(camera);
+	}
+
+    void Room::drawFloor(Camera& camera)
     {
         m_floorTiles.draw(camera);
     }
+
+
 
 
 }

@@ -25,8 +25,11 @@ class Camera
 
         sf::RenderWindow& getWindow();
 
+		bool inBounds(sf::FloatRect & rect);
+
     private:
         sf::View m_view;
+		sf::FloatRect m_bounds;
 
         Entity::Mob* m_pMob = nullptr;
         sf::RenderWindow* m_pWindow = nullptr;

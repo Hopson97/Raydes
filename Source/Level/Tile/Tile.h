@@ -9,6 +9,7 @@ namespace Tile
 {
     enum class ID
     {
+		NONE			= -1,
         GreyStone       = 0,
         GreyStoneWall   = 1,
 

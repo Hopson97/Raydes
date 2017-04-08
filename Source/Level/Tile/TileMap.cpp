@@ -65,6 +65,9 @@ namespace Tile
 
     void Map::addTile(float x, float y, int8_t tileType)
     {
+		if (tileType == -1) 
+			return;
+
         Quad quad;
 
         //Set the positions of the 4 verticies of the quad

@@ -26,7 +26,8 @@ namespace Level
         public:
             Room(const sf::Vector2f& position);
 
-            void draw(Camera& camera);
+			void drawWalls(Camera& camera);
+			void drawFloor(Camera& camera);
 
 
         private:

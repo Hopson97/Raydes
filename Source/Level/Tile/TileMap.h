@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Tile.h"
+#include "TileDatabase.h"
 
 class Camera;
 
@@ -34,6 +35,11 @@ namespace Tile
                 m_id = id;
                 return *this;
             }
+
+			const Data& getData() const 
+			{
+				return Database::get().getTileData(m_id);
+			}
 
         private:
             uint8_t m_id;
