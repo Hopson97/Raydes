@@ -24,7 +24,7 @@ namespace Level
     class Room
     {
         public:
-            Room();
+            Room(const sf::Vector2f& position);
 
             void draw(Camera& camera);
 

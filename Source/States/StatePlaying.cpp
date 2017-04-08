@@ -5,7 +5,7 @@
 namespace State
 {
     SPlaying::SPlaying(Application* app, Camera& camera)
-    :   SBase(app)
+    :   SBase{app}
     {
         camera.hookMob(m_player);
     }
@@ -22,12 +22,13 @@ namespace State
     void SPlaying::update(float dt)
     {
         m_player.update(dt);
+        m_floor.update(dt, m_player);
     }
 
     void SPlaying::render(Camera& camera)
     {
-        m_room.draw(camera);
-
-        m_player.draw(camera);
+        m_floor     .drawFloor(camera);
+        m_player    .draw(camera);
+        m_floor     .drawWalls(camera);
     }
 }

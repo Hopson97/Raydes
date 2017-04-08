@@ -12,7 +12,7 @@ namespace Entity
     {
         position += velocity * dt;
         onUpdate(dt);
-        velocity *= 0.98f * (dt * 60);
+        velocity *= 0.95f;
     }
 
     Player::Player()
@@ -22,7 +22,7 @@ namespace Entity
 
     void Player::input()
     {
-        float speed = 125;
+        float speed = 10;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         {
             velocity.y -= speed;

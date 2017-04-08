@@ -12,10 +12,12 @@ namespace Level
 {
 namespace Tile
 {
-    Map::Map(const std::vector<uint8_t>& tileData,
-                     uint32_t width,
-                     uint32_t height)
+    Map::Map(const std::vector<MapNode>& tileData,
+             uint32_t width,
+             uint32_t height,
+             const sf::Vector2f& origin)
     :   m_tileData  (tileData)
+    ,   m_origin    (origin)
     ,   m_width     (width)
     ,   m_height    (height)
     {
@@ -34,7 +36,7 @@ namespace Tile
 
     uint8_t Map::getTile(uint32_t x, uint32_t y)
     {
-        return m_tileData.at(y * m_width + x);
+        return m_tileData.at(y * m_width + x).getID();
     }
 
     void Map::generateVertexArray()
@@ -54,7 +56,7 @@ namespace Tile
         Quad quad;
 
         //Set the positions of the 4 verticies of the quad
-        setQuadVertexCoords (quad, x, y);
+        setQuadVertexCoords (quad, x, y, tileType);
         setQuadTextureCoords(quad, tileType);
 
         //Add them into the array (in anti-clockwise order)
@@ -64,14 +66,20 @@ namespace Tile
         m_vertexArray.push_back(quad.bottomLeft);
     }
 
-    void Map::setQuadVertexCoords(Quad& quad, float x, float y)
+    void Map::setQuadVertexCoords(Quad& quad, float x, float y, int8_t tileType)
     {
+        auto dim = Database::get().getTileData(tileType).dimensions;
+        auto xMod = dim.x * TILE_SIZE;
+        auto yMod = dim.y * TILE_SIZE;
+
         //Set the vertex positions, anti-clockwise order
-        quad.topLeft     .position = {x,              y};
-        quad.topRight    .position = {x + TILE_SIZE,  y};
-        quad.bottomRight .position = {x + TILE_SIZE,  y + TILE_SIZE};
-        quad.bottomLeft  .position = {x,              y + TILE_SIZE};
+        quad.topLeft     .position = {x + m_origin.x + xMod,    y + m_origin.y - yMod};
+        quad.topRight    .position = {x + m_origin.x,           y + m_origin.y - yMod};
+        quad.bottomRight .position = {x + m_origin.x,           y + m_origin.y};
+        quad.bottomLeft  .position = {x + m_origin.x + xMod,    y + m_origin.y};
     }
+
+
 
     void Map::setQuadTextureCoords(Quad& quad, int8_t tileType)
     {

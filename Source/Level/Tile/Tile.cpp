@@ -1,6 +1,7 @@
 #include "Tile.h"
 
 #include <fstream>
+#include <iostream>
 
 namespace Level
 {
@@ -45,6 +46,10 @@ namespace Tile
             else if (line == "Texture")
             {
                 inFile >> m_data.textureCoords.x >> m_data.textureCoords.y;
+            }
+            else if (line == "Dim")
+            {
+                inFile >> m_data.dimensions.x >> m_data.dimensions.y;
             }
         }
     }

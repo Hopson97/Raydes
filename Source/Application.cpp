@@ -7,6 +7,7 @@ Application::Application()
 ,   m_camera    (m_window)
 {
     m_states.push_back(std::make_unique<State::SPlaying>(this,m_camera));
+    m_window.setVerticalSyncEnabled(true);
 }
 
 void Application::runMainLoop()

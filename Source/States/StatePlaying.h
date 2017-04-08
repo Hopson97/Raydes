@@ -2,8 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <vector>
+
 #include "StateBase.h"
-#include "../Level/Room.h"
+#include "../Level/Floor.h"
 #include "../Entity/Player.h"
 
 namespace State
@@ -19,9 +21,8 @@ namespace State
             void render (Camera& camera)    override;
 
         private:
+            Level::Floor m_floor;
+
             Entity::Player  m_player;
-            Level::Room     m_room;
-
-
     };
 }

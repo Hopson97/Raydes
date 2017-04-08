@@ -7,7 +7,6 @@ Camera::Camera(sf::RenderWindow& window)
 :   m_view      ({0, 0, 1280, 720})
 ,   m_pWindow   (&window)
 {
-
 }
 
 void Camera::hookMob(Entity::Mob& mob)

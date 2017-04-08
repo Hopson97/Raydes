@@ -1,21 +1,33 @@
 #include "Room.h"
 
 #include "LevelConstants.h"
+#include "Tile/TileMap.h"
 
 namespace Level
 {
-    std::vector<uint8_t> makeRoom()
+    namespace
     {
-        std::vector<uint8_t> tiles;
-        for (int i = 0; i < ROOM_SIZE * ROOM_SIZE; i++)
+        std::vector<Tile::MapNode> makeRoom()
         {
-            tiles.push_back(0);
+            std::vector<Tile::MapNode> tiles;
+            for (int i = 0; i < ROOM_SIZE * ROOM_SIZE; i++)
+            {
+                tiles.push_back(0);
+            }
+            return tiles;
         }
-        return tiles;
+
+        sf::Vector2f getPosition(const sf::Vector2f& position)
+        {
+            return {position.x * ROOM_SIZE * TILE_SIZE + TILE_SIZE * position.x * 3,
+                    position.y * ROOM_SIZE * TILE_SIZE + TILE_SIZE * position.y * 3};
+
+        }
+
     }
 
-    Room::Room()
-    :   m_tileMap (makeRoom(), ROOM_SIZE, ROOM_SIZE)
+    Room::Room(const sf::Vector2f& position)
+    :   m_tileMap (makeRoom(), ROOM_SIZE, ROOM_SIZE, getPosition(position))
     {
 
     }

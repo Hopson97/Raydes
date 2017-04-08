@@ -9,7 +9,7 @@ namespace Tile
 {
     enum class ID
     {
-        GreyStone = 0,
+        GreyStone   = 0,
 
         COUNT
     };
@@ -18,6 +18,7 @@ namespace Tile
     {
         ID id;
         sf::Vector2f textureCoords;
+        sf::Vector2f dimensions;
         uint32_t variations;
     };
 

@@ -11,6 +11,26 @@ namespace Level
 {
 namespace Tile
 {
+    class MapNode
+    {
+        public:
+            MapNode(Tile::ID id)
+            :   m_id    ((int8_t) id)
+            { }
+
+            MapNode(uint8_t id)
+            :   m_id    (id)
+            { }
+
+            uint8_t getID()
+            {
+                return m_id;
+            }
+
+        private:
+            uint8_t m_id;
+    };
+
     class Map
     {
         //Each tile of the tile map = one quad
@@ -25,7 +45,10 @@ namespace Tile
 
         public:
             Map() = default;
-            Map(const std::vector<uint8_t>& tileData, uint32_t width, uint32_t height);
+            Map(const std::vector<MapNode>& tileData,
+                uint32_t width,
+                uint32_t height,
+                const sf::Vector2f& origin);
             void draw(Camera& camera);
 
         private:
@@ -34,11 +57,13 @@ namespace Tile
             void generateVertexArray();
 
             void addTile                (float x, float y, int8_t tileType);
-            void setQuadVertexCoords    (Quad& quad, float x, float y);
+            void setQuadVertexCoords    (Quad& quad, float x, float y, int8_t tileType);
             void setQuadTextureCoords   (Quad& quad, int8_t tileType);
 
-            std::vector<uint8_t>      m_tileData; //1 byte per tile
+            std::vector<MapNode>      m_tileData; //1 byte per tile
             std::vector<sf::Vertex> m_vertexArray;
+
+            sf::Vector2f m_origin;
 
             uint32_t m_width  = 0;
             uint32_t m_height = 0;
