@@ -3,11 +3,11 @@
 #include <SFML/System/NonCopyable.hpp>
 
 class Application;
+class Camera;
 
 namespace sf
 {
     //Forward delcare SFML stuff
-    class RenderWindow;
     class Event;
 }
 
@@ -24,8 +24,8 @@ namespace State
 
             virtual void event  (sf::Event& event)  = 0;
             virtual void input  ()                  = 0;
-            virtual void update ()                  = 0;
-            virtual void render (sf::RenderWindow&) = 0;
+            virtual void update (float dt)          = 0;
+            virtual void render (Camera& camera)    = 0;
 
         protected:
             Application* m_pApplication;

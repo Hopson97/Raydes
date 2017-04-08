@@ -4,20 +4,25 @@
 
 Application::Application()
 :   m_window    ({1280, 720}, "Raydes")
+,   m_camera    (m_window)
 {
-    m_states.push_back(std::make_unique<State::SPlaying>(this));
+    m_states.push_back(std::make_unique<State::SPlaying>(this,m_camera));
 }
 
 void Application::runMainLoop()
 {
+    sf::Clock dtTimer;
     while (m_window.isOpen())
     {
+        auto dt = dtTimer.restart().asSeconds();
+
         handleEvents();
         m_window.clear();
 
         m_states.back()->input();
-        m_states.back()->update();
-        m_states.back()->render(m_window);
+        m_camera.update();
+        m_states.back()->update(dt);
+        m_states.back()->render(m_camera);
 
         m_window.display();
         checkStateChange();

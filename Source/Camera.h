@@ -24,6 +24,8 @@ class Camera
 
         void draw(sf::Drawable& drawable);
 
+        sf::RenderWindow& getWindow();
+
     private:
         sf::View m_view;
 

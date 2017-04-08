@@ -5,6 +5,8 @@
 
 #include "Tile.h"
 
+class Camera;
+
 namespace Level
 {
 namespace Tile
@@ -22,9 +24,9 @@ namespace Tile
         };
 
         public:
-            Map();
+            Map() = default;
             Map(const std::vector<uint8_t>& tileData, uint32_t width, uint32_t height);
-            void draw(sf::RenderWindow& window);
+            void draw(Camera& camera);
 
         private:
             uint8_t getTile(uint32_t x, uint32_t y);

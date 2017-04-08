@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Tile/TileMap.h"
+
+class Camera;
+
 namespace Level
 {
     enum class RoomType
@@ -20,9 +24,14 @@ namespace Level
     class Room
     {
         public:
+            Room();
+
+            void draw(Camera& camera);
 
 
         private:
+            Tile::Map m_tileMap;
+
             RoomInfo m_info;
     };
 }

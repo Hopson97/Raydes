@@ -11,13 +11,17 @@ namespace Entity
     struct Mob
     {
         sf::Vector2f position;
-        virtual void update(){}
+        sf::Vector2f velocity;
+        void update(float dt);
+
+        private:
+            virtual void onUpdate(float dt) = 0;
     };
 
     struct Player : public Mob
     {
         Player();
-        void update();
+        void onUpdate(float dt);
         void draw(Camera& camera);
 
         sf::RectangleShape sprite;

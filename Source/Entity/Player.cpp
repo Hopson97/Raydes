@@ -6,12 +6,17 @@
 
 namespace Entity
 {
-    Player::Player()
+    void Mob::update(float dt)
     {
-        sprite.setSize({200, 200});
+        onUpdate(dt);
     }
 
-    void Player::update()
+    Player::Player()
+    {
+        sprite.setSize({32, 32});
+    }
+
+    void Player::onUpdate(float dt)
     {
         sprite.setPosition(position);
     }

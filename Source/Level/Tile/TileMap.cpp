@@ -4,31 +4,12 @@
 #include "TileDatabase.h"
 #include "../../Util/Random.h"
 #include "../../Resources/ResourceHolder.h"
+#include "../../Camera.h"
 
 namespace Level
 {
 namespace Tile
 {
-    std::vector<uint8_t> tilesd()
-    {
-        std::vector<uint8_t> res;
-        for (int i = 0; i < 20 * 20; i++)
-        {
-            res.push_back(0);
-        }
-        return res;
-    }
-
-
-    Map::Map()
-    :   m_tileData  (tilesd())
-    ,   m_width     (20)
-    ,   m_height    (20)
-    {
-        m_tileTextures = &ResourceHolder::get().textures.get("atlas");
-        generateVertexArray();
-    }
-
     Map::Map(const std::vector<uint8_t>& tileData,
                      uint32_t width,
                      uint32_t height)
@@ -40,14 +21,14 @@ namespace Tile
         generateVertexArray();
     }
 
-    void Map::draw(sf::RenderWindow& window)
+    void Map::draw(Camera& camera)
     {
 		generateVertexArray();
 
         sf::RenderStates states;
         states.texture = m_tileTextures;
 
-        window.draw(m_vertexArray.data(), m_vertexArray.size(), sf::Quads, states);
+        camera.getWindow().draw(m_vertexArray.data(), m_vertexArray.size(), sf::Quads, states);
     }
 
     uint8_t Map::getTile(uint32_t x, uint32_t y)

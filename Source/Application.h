@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "States/StateBase.h"
+#include "Camera.h"
 
 class Application
 {
@@ -37,6 +38,8 @@ class Application
 
         sf::RenderWindow m_window;
         StateSwitch m_stateSwitch = StateSwitch::None;
+
+        Camera m_camera;
 
 
 };
