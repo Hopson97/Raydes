@@ -28,25 +28,12 @@ namespace Level
             return tiles;
         }
 
-		std::vector<Tile::MapNode> extractWalls(const std::vector<Tile::MapNode>& original)
+		std::vector<Tile::MapNode> extract(const std::vector<Tile::MapNode>& original, Tile::Data::Type type)
 		{
 			std::vector<Tile::MapNode> tiles;
 			for (auto& tile : original)
 			{
-				if (tile.getData().type == Tile::Data::Type::Wall)
-					tiles.push_back(tile);
-				else
-					tiles.push_back(-1);
-			}
-			return tiles;
-		}
-
-		std::vector<Tile::MapNode> extractFloors(const std::vector<Tile::MapNode>& original)
-		{
-			std::vector<Tile::MapNode> tiles;
-			for (auto& tile : original)
-			{
-				if (tile.getData().type == Tile::Data::Type::Floor)
+				if (tile.getData().type == type)
 					tiles.push_back(tile);
 				else
 					tiles.push_back(-1);
@@ -66,8 +53,8 @@ namespace Level
     {	
         auto tiles = makeRoom();
 
-		m_floorTiles.init(extractFloors(tiles), ROOM_SIZE, ROOM_SIZE, getPosition(position));
-		m_wallTiles	.init(extractWalls (tiles), ROOM_SIZE, ROOM_SIZE, getPosition(position));
+		m_floorTiles.init(extract (tiles, Tile::Data::Type::Floor), ROOM_SIZE, ROOM_SIZE, getPosition(position));
+		m_wallTiles	.init(extract (tiles, Tile::Data::Type::Wall),  ROOM_SIZE, ROOM_SIZE, getPosition(position));
     }
 
 	void Room::drawWalls(Camera & camera)
