@@ -18,7 +18,7 @@ namespace Tile
     {
         ID id;
         sf::Vector2f textureCoords;
-        uint8_t variations;
+        uint32_t variations;
     };
 
     struct Type

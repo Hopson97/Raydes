@@ -16,6 +16,7 @@ namespace State
 
     void SPlaying::input()
     {
+        m_player.input();
     }
 
     void SPlaying::update(float dt)

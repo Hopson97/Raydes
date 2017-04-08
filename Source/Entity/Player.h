@@ -4,6 +4,7 @@
 
 #include "Player.h"
 
+
 class Camera;
 
 namespace Entity
@@ -21,6 +22,7 @@ namespace Entity
     struct Player : public Mob
     {
         Player();
+        void input();
         void onUpdate(float dt);
         void draw(Camera& camera);
 

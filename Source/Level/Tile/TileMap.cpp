@@ -1,5 +1,7 @@
 #include "TileMap.h"
 
+#include <iostream>
+
 #include "../LevelConstants.h"
 #include "TileDatabase.h"
 #include "../../Util/Random.h"
@@ -21,10 +23,9 @@ namespace Tile
         generateVertexArray();
     }
 
+
     void Map::draw(Camera& camera)
     {
-		generateVertexArray();
-
         sf::RenderStates states;
         states.texture = m_tileTextures;
 
@@ -82,7 +83,7 @@ namespace Tile
         //Choose a random variation
 
         int32_t varitation = 0;
-        if (varitation > texVaritations)
+        if (texVaritations > 1)
             varitation = Random::intInRange(0, texVaritations - 1);
 
         //Get the x and y positions inside of the texture atlas of that variation of the texture
