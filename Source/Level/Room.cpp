@@ -14,8 +14,24 @@ namespace Level
             std::vector<Tile::MapNode> tiles;
             for (int i = 0; i < ROOM_SIZE * ROOM_SIZE; i++)
             {
-                tiles.push_back(1);
+                tiles.push_back(0);
             }
+
+            for (int i = 0; i < ROOM_SIZE; i++)
+            {
+                tiles[i] = 1;
+            }
+
+            for (int i = 0; i < ROOM_SIZE; i++)
+            {
+                tiles[i * ROOM_SIZE] = 1;
+            }
+
+            for (int i = 0; i < ROOM_SIZE; i++)
+            {
+                tiles[i * ROOM_SIZE + ROOM_SIZE - 1] = 1;
+            }
+
             return tiles;
         }
 
