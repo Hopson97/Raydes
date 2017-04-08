@@ -13,7 +13,8 @@ namespace Tile
     Database::Database()
     :   m_tiles ((uint16_t)ID::COUNT)
     {
-        registerTile(ID::GreyStone, "GreyStone");
+        registerTile(ID::GreyStone,     "GreyStone");
+        registerTile(ID::GreyStoneWall, "GreyStoneWall");
     }
 
     void Database::registerTile(ID id, std::string&& name)

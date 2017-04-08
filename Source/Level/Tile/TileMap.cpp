@@ -79,8 +79,6 @@ namespace Tile
         quad.bottomLeft  .position = {x + m_origin.x + xMod,    y + m_origin.y};
     }
 
-
-
     void Map::setQuadTextureCoords(Quad& quad, int8_t tileType)
     {
         //Get the place inside of the texture atlas where the texture can be found
@@ -95,14 +93,18 @@ namespace Tile
             varitation = Random::intInRange(0, texVaritations - 1);
 
         //Get the x and y positions inside of the texture atlas of that variation of the texture
-        auto tx = texCoords.x + varitation * TILE_TEXTURE_SIZE;
-        auto ty = texCoords.y * TILE_TEXTURE_SIZE;
+        auto tx = texCoords.x + varitation  * TILE_TEXTURE_SIZE;
+        auto ty = texCoords.y               * TILE_TEXTURE_SIZE;
+
+        auto dim = Database::get().getTileData(tileType).dimensions;
+        auto xMod = dim.x * TILE_TEXTURE_SIZE;
+        auto yMod = dim.y * TILE_TEXTURE_SIZE;
 
         //Set texture coords of the 4 vertex points, anti-clockwise order
-        quad.topLeft     .texCoords = {tx,                      ty};
-        quad.topRight    .texCoords = {tx + TILE_TEXTURE_SIZE,  ty};
-        quad.bottomRight .texCoords = {tx + TILE_TEXTURE_SIZE,  ty + TILE_TEXTURE_SIZE};
-        quad.bottomLeft  .texCoords = {tx,                      ty + TILE_TEXTURE_SIZE};
+        quad.topLeft     .texCoords = {tx,          ty};
+        quad.topRight    .texCoords = {tx + xMod,   ty};
+        quad.bottomRight .texCoords = {tx + xMod,   ty + yMod};
+        quad.bottomLeft  .texCoords = {tx,          ty + yMod};
     }
 
 

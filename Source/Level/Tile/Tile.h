@@ -9,7 +9,8 @@ namespace Tile
 {
     enum class ID
     {
-        GreyStone   = 0,
+        GreyStone       = 0,
+        GreyStoneWall   = 1,
 
         COUNT
     };
@@ -18,8 +19,8 @@ namespace Tile
     {
         enum Type
         {
-            Wall,
-            Floor
+            Wall  = 0,
+            Floor = 1
         };
 
         ID id;

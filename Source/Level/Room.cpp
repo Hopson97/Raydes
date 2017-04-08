@@ -3,6 +3,8 @@
 #include "LevelConstants.h"
 #include "Tile/TileMap.h"
 
+#include "../Util/Random.h"
+
 namespace Level
 {
     namespace
@@ -12,7 +14,7 @@ namespace Level
             std::vector<Tile::MapNode> tiles;
             for (int i = 0; i < ROOM_SIZE * ROOM_SIZE; i++)
             {
-                tiles.push_back(0);
+                tiles.push_back(1);
             }
             return tiles;
         }
