@@ -1,16 +1,15 @@
 #pragma once
 
-#include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics.hpp>
 
 namespace Entity
 {
-    struct Mob;
+    class Mob;
 }
 
 namespace sf
 {
     class Drawable;
-    class RenderWindow;
 }
 
 class Camera

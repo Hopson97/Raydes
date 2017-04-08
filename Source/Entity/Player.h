@@ -9,23 +9,25 @@ class Camera;
 
 namespace Entity
 {
-    struct Mob
+	class Mob
     {
-        sf::Vector2f position;
-        sf::Vector2f velocity;
-        void update(float dt);
+		public:
+			sf::Vector2f position;
+			sf::Vector2f velocity;
+			void update(float dt);
 
         private:
             virtual void onUpdate(float dt) = 0;
     };
 
-    struct Player : public Mob
+    class Player : public Mob
     {
-        Player();
-        void input();
-        void onUpdate(float dt);
-        void draw(Camera& camera);
+		public:
+			Player();
+			void input();
+			void onUpdate(float dt);
+			void draw(Camera& camera);
 
-        sf::RectangleShape sprite;
+			sf::RectangleShape sprite;
     };
 }

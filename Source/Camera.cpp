@@ -7,6 +7,7 @@ Camera::Camera(sf::RenderWindow& window)
 :   m_view      ({0, 0, 1280, 720})
 ,   m_pWindow   (&window)
 {
+    m_view.zoom(1.1f);
 }
 
 void Camera::hookMob(Entity::Mob& mob)

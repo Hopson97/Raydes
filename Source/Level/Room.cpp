@@ -1,9 +1,12 @@
 #include "Room.h"
 
+#include <iostream>
+
 #include "LevelConstants.h"
 #include "Tile/TileMap.h"
 
 #include "../Util/Random.h"
+#include "../Util/FileUtil.h"
 
 namespace Level
 {
@@ -11,25 +14,17 @@ namespace Level
     {
         std::vector<Tile::MapNode> makeRoom()
         {
-            std::vector<Tile::MapNode> tiles;
-            for (int i = 0; i < ROOM_SIZE * ROOM_SIZE; i++)
-            {
-                tiles.push_back(0);
-            }
+            std::vector<Tile::MapNode> tiles(ROOM_SIZE * ROOM_SIZE);
+            auto str = getFileContents("Res/Rooms/Test.ryroom");
+            str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
 
-            for (int i = 0; i < ROOM_SIZE; i++)
+            for (int x = 0; x < ROOM_SIZE; x++)
             {
-                tiles[i] = 1;
-            }
-
-            for (int i = 0; i < ROOM_SIZE; i++)
-            {
-                tiles[i * ROOM_SIZE] = 1;
-            }
-
-            for (int i = 0; i < ROOM_SIZE; i++)
-            {
-                tiles[i * ROOM_SIZE + ROOM_SIZE - 1] = 1;
+                for (int y = 0; y < ROOM_SIZE; y++)
+                {
+                    unsigned char c = str[y * ROOM_SIZE + x];
+                    tiles[y * ROOM_SIZE + x] = c - '0';
+                }
             }
 
             return tiles;
@@ -45,14 +40,15 @@ namespace Level
     }
 
     Room::Room(const sf::Vector2f& position)
-    :   m_tileMap (makeRoom(), ROOM_SIZE, ROOM_SIZE, getPosition(position))
+    :   m_floorTiles (makeRoom(), ROOM_SIZE, ROOM_SIZE, getPosition(position))
     {
+        auto tiles = makeRoom();
 
     }
 
     void Room::draw(Camera& camera)
     {
-        m_tileMap.draw(camera);
+        m_floorTiles.draw(camera);
     }
 
 

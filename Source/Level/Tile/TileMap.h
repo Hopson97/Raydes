@@ -14,6 +14,8 @@ namespace Tile
     class MapNode
     {
         public:
+            MapNode() = default;
+
             MapNode(Tile::ID id)
             :   m_id    ((int8_t) id)
             { }
@@ -25,6 +27,12 @@ namespace Tile
             uint8_t getID()
             {
                 return m_id;
+            }
+
+            MapNode& operator =(uint8_t id)
+            {
+                m_id = id;
+                return *this;
             }
 
         private:
@@ -49,6 +57,12 @@ namespace Tile
                 uint32_t width,
                 uint32_t height,
                 const sf::Vector2f& origin);
+
+            void init(const std::vector<MapNode>& tileData,
+                      uint32_t width,
+                      uint32_t height,
+                      const sf::Vector2f& origin);
+
             void draw(Camera& camera);
 
         private:

@@ -30,7 +30,8 @@ namespace Level
 
 
         private:
-            Tile::Map m_tileMap;
+            Tile::Map m_floorTiles;
+            Tile::Map m_wallTiles;
 
             RoomInfo m_info;
     };

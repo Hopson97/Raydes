@@ -16,14 +16,26 @@ namespace Tile
              uint32_t width,
              uint32_t height,
              const sf::Vector2f& origin)
-    :   m_tileData  (tileData)
-    ,   m_origin    (origin)
-    ,   m_width     (width)
-    ,   m_height    (height)
+    :   m_tileData  {std::move(tileData)}
+    ,   m_origin    {origin}
+    ,   m_width     {width}
+    ,   m_height    {height}
     {
         m_tileTextures = &ResourceHolder::get().textures.get("atlas");
         generateVertexArray();
     }
+
+    void Map::init(const std::vector<MapNode>& tileData, uint32_t width, uint32_t height, const sf::Vector2f& origin)
+    {
+        m_tileData = std::move(tileData);
+        m_origin   = origin;
+        m_width    = width;
+        m_height   = height;
+
+        m_tileTextures = &ResourceHolder::get().textures.get("atlas");
+        generateVertexArray();
+    }
+
 
 
     void Map::draw(Camera& camera)
