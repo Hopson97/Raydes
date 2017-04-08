@@ -16,10 +16,18 @@ namespace Tile
 
     struct Data
     {
+        enum Type
+        {
+            Wall,
+            Floor
+        };
+
         ID id;
+        Type type;
         sf::Vector2f textureCoords;
         sf::Vector2f dimensions;
         uint32_t variations;
+
     };
 
     struct Type

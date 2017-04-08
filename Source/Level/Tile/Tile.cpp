@@ -7,22 +7,9 @@ namespace Level
 {
 namespace Tile
 {
-    //using json = nlohmann::json;
-
     Type::Type(std::string&& name)
     {
         auto fileName = "Res/Tiles/" + std::move(name) + ".tile";
-
-        /*
-        json file = json::parse(fileName);
-
-        m_data.id           = (ID)  file["ID"]  .get<int32_t>();
-        m_data.variations   =       file["Var"] .get<int32_t>();
-
-        auto texCoords = file["Texture"].get<std::vector<uint32_t>>();
-        m_data.textureCoords.x = texCoords[0];
-        m_data.textureCoords.y = texCoords[1];
-        */
 
         std::ifstream inFile (fileName);
         if (!inFile.is_open())
@@ -50,6 +37,12 @@ namespace Tile
             else if (line == "Dim")
             {
                 inFile >> m_data.dimensions.x >> m_data.dimensions.y;
+            }
+            else if (line == "type")
+            {
+                int32_t i;
+                inFile >> i;
+                m_data.type = (Data::Type)i;
             }
         }
     }
