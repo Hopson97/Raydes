@@ -21,11 +21,11 @@ class Camera
 
         void update();
 
-        void draw(sf::Drawable& drawable);
+        void draw(sf::Drawable& drawable, const sf::FloatRect& bounds);
 
         sf::RenderWindow& getWindow();
 
-		bool inBounds(sf::FloatRect & rect);
+		bool inBounds(const sf::FloatRect & rect);
 
     private:
         sf::View m_view;

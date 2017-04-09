@@ -30,8 +30,9 @@ void Camera::update()
     m_pWindow->setView(m_view);
 }
 
-void Camera::draw(sf::Drawable& drawable)
+void Camera::draw(sf::Drawable& drawable, const sf::FloatRect& bounds)
 {
+	if (inBounds(bounds))
     m_pWindow->draw(drawable);
 }
 
@@ -40,7 +41,7 @@ sf::RenderWindow& Camera::getWindow()
     return *m_pWindow;
 }
 
-bool Camera::inBounds(sf::FloatRect& rect)
+bool Camera::inBounds(const sf::FloatRect& rect)
 {
 	return rect.intersects(m_bounds);
 }

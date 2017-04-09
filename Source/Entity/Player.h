@@ -2,24 +2,12 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Player.h"
-
+#include "Mob.h"
 
 class Camera;
 
 namespace Entity
 {
-	class Mob
-    {
-		public:
-			sf::Vector2f position;
-			sf::Vector2f velocity;
-			void update(float dt);
-
-        private:
-            virtual void onUpdate(float dt) = 0;
-    };
-
     class Player : public Mob
     {
 		public:

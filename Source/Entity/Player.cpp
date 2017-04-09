@@ -8,13 +8,6 @@
 
 namespace Entity
 {
-    void Mob::update(float dt)
-    {
-        position += velocity * dt;
-        onUpdate(dt);
-        velocity *= 0.95f;
-    }
-
     Player::Player()
     {
         sprite.setSize({32, 32});
@@ -49,7 +42,7 @@ namespace Entity
 
     void Player::draw(Camera& camera)
     {
-        camera.draw(sprite);
+        camera.draw(sprite, sprite.getLocalBounds());
     }
 
 }
