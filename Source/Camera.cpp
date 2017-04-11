@@ -32,7 +32,7 @@ void Camera::update()
 
 void Camera::draw(sf::Drawable& drawable, const sf::FloatRect& bounds)
 {
-	if (inBounds(bounds))
+	//if (inBounds(bounds))
     m_pWindow->draw(drawable);
 }
 
