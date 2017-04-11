@@ -19,6 +19,15 @@ namespace Maths
         vect.x /= length;
         vect.y /= length;
     }
+    
+    template<typename T>
+    T dot (const sf::Vector2<T>& a, const sf::Vector2<T>& b)
+    {
+        auto x = a.x * b.x;
+	    auto y = a.y * b.y
+
+	    return x + y
+    }
 }
 
 #endif // VECTORMATH_H_INCLUDED
