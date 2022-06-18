@@ -1,5 +1,5 @@
 # Raydes
-A simple game insprited by "raids" in Runescape (Dungeoneering). 
+A simple game inspired by "raids" in Runescape (Dungeoneering). 
 
 The idea behind the "Dungeoneering" skill in Runescape is fairly linear.
 
@@ -11,3 +11,4 @@ The first room would just have a few supplies (food, weapons, armour etc) and a 
 You would then venture into rooms until you find the boss. When the boss is defeated, you move onto the "next floor".
 
 Each room would have some variation. For example, some might be a puzzle room, which requires completion before doors to new rooms can be opened.
+
